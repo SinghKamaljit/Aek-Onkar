@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Dark navy background -->
+  <rect width="512" height="512" fill="#0a1628"/>
+  <!-- Gold radial glow -->
+  <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#c8922a" stop-opacity="0.18"/>
+    <stop offset="100%" stop-color="#0a1628" stop-opacity="0"/>
+  </radialGradient>
+  <circle cx="256" cy="256" r="256" fill="url(#glow)"/>
+  <!-- Thin gold border ring -->
+  <circle cx="256" cy="256" r="228" fill="none" stroke="#c8922a" stroke-width="1.5" stroke-opacity="0.5"/>
+  <!-- ੴ symbol rendered as text using Unicode -->
+  <text
+    x="256"
+    y="320"
+    text-anchor="middle"
+    font-family="Arial Unicode MS, Noto Sans Gurmukhi, serif"
+    font-size="240"
+    fill="#c8922a"
+    filter="url(#shadow)"
+  >ੴ</text>
+  <!-- Soft shadow filter -->
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#c8922a" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+</svg>

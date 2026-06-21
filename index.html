@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="pa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aek Onkar · ੴ</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a1628">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<style>
+@font-face {
+  font-family: 'GurbaniAkhar';
+  src: url('data:font/woff;base64,d09GRgABAAAAAC58AA0AAAAASYAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAABqAAAAEQAAABWa5CNp2NtYXAAAAPQAAACSAAAA1463hCWY3Z0IAAABmgAAAApAAAAYruZXLZmcGdtAAAGGAAAABQAAAAUgzPCT2dseWYAAAeEAAAlmAAAO6ZIvv9JaGVhZAAAATAAAAA2AAAANvxT8lpoaGVhAAABaAAAACAAAAAkDY0Fl2htdHgAAAHsAAAB4gAAAlQvTMfJbG9jYQAABpQAAADuAAACWAAVKkJtYXhwAAABiAAAACAAAAAgAo8GlW5hbWUAAC0cAAABSwAAAztcebx2cG9zdAAALmgAAAATAAAAIP2rAGRwcmVwAAAGLAAAADkAAABIyQ/SEw==') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --gold: #c8922a;
+  --deep-blue: #0a1628;
+  --light-gold: #f0c96b;
+  --cream: #fef9ef;
+  --soft-white: #fffdf6;
+  --navy-card: #0d1a35;
+}
+
+body {
+  background: radial-gradient(ellipse at top, #1a2e50 0%, #0a1628 60%);
+  min-height: 100vh;
+  font-family: Georgia, serif;
+  color: var(--cream);
+  overflow-x: hidden;
+}
+
+/* ── SCREENS ── */
+.screen { display: none; min-height: 100vh; flex-direction: column; align-items: center; }
+.screen.active { display: flex; }
+
+/* ── HOME SCREEN ── */
+#home {
+  justify-content: center;
+  padding: 40px 24px 60px;
+  text-align: center;
+  position: relative;
+}
+
+.home-symbol {
+  font-family: 'GurbaniAkhar', Georgia, serif;
+  font-size: 5rem;
+  color: var(--gold);
+  text-shadow: 0 0 60px rgba(200,146,42,0.7), 0 0 120px rgba(200,146,42,0.3);
+  margin-bottom: 8px;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { text-shadow: 0 0 40px rgba(200,146,42,0.6), 0 0 80px rgba(200,146,42,0.2); }
+  50%       { text-shadow: 0 0 80px rgba(200,146,42,0.9), 0 0 160px rgba(200,146,42,0.4); }
+}
+
+.home-title {
+  font-size: 1.6rem;
+  color: var(--light-gold);
+  letter-spacing: 3px;
+  margin-bottom: 6px;
+}
+
+.home-sub {
+  font-size: 0.82rem;
+  color: rgba(200,146,42,0.55);
+  letter-spacing: 1px;
+  margin-bottom: 48px;
+}
+
+.home-divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin: 0 auto 48px;
+}
+
+.home-btn {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto 18px;
+  padding: 18px 28px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-family: Georgia, serif;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.home-btn:active { transform: scale(0.97); }
+
+.btn-story {
+  background: linear-gradient(135deg, #c8922a, #a87220);
+  color: #fff8e8;
+  box-shadow: 0 6px 24px rgba(200,146,42,0.45);
+}
+
+.btn-sukhmani {
+  background: transparent;
+  border: 1.5px solid var(--gold) !important;
+  color: var(--light-gold);
+}
+
+.btn-sukhmani:active { background: rgba(200,146,42,0.12); }
+
+.home-tagline {
+  margin-top: 48px;
+  font-size: 0.75rem;
+  color: rgba(200,146,42,0.35);
+  font-style: italic;
+  letter-spacing: 0.5px;
+  line-height: 1.8;
+}
+
+/* ── TOP BAR ── */
+.top-bar {
+  width: 100%;
+  background: linear-gradient(to right, #0a1628, #1a3060, #0a1628);
+  border-bottom: 1.5px solid var(--gold);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 20px rgba(200,146,42,0.25);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.top-bar-title {
+  font-family: 'GurbaniAkhar', Georgia, serif;
+  font-size: 1.2rem;
+  color: var(--light-gold);
+}
+
+.back-btn {
+  background: transparent;
+  border: 1px solid rgba(200,146,42,0.5);
+  color: var(--gold);
+  font-family: Georgia, serif;
+  font-size: 0.82rem;
+  padding: 7px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.back-btn:active { background: rgba(200,146,42,0.15); }
+
+/* ── STORY SCREEN ── */
+#story { padding-bottom: 60px; }
+
+.story-header {
+  text-align: center;
+  padding: 28px 20px 16px;
+  font-family: 'GurbaniAkhar', Georgia, serif;
+  font-size: 1.8rem;
+  color: var(--gold);
+  text-shadow: 0 0 30px rgba(200,146,42,0.5);
+}
+
+.story-intro {
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(200,146,42,0.5);
+  padding: 0 24px 24px;
+  letter-spacing: 0.5px;
+}
+
+.accordion {
+  width: 100%;
+  max-width: 680px;
+  padding: 0 14px;
+}
+
+.acc-item {
+  background: linear-gradient(160deg, #152040 0%, #0d1a35 100%);
+  border: 1px solid rgba(200,146,42,0.3);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.acc-item.open { border-color: rgba(200,146,42,0.7); }
+
+.acc-header {
+  width: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+}
+
+.acc-num {
+  min-width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(200,146,42,0.12);
+  border: 1px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  color: var(--light-gold);
+  font-family: Georgia, serif;
+}
+
+.acc-question {
+  font-family: Georgia, serif;
+  font-size: 0.92rem;
+  color: var(--cream);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.acc-arrow {
+  color: var(--gold);
+  font-size: 0.8rem;
+  transition: transform 0.3s;
+}
+
+.acc-item.open .acc-arrow { transform: rotate(180deg); }
+
+.acc-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.acc-item.open .acc-body { max-height: 300px; }
+
+.acc-content {
+  padding: 0 18px 18px 64px;
+  font-family: Georgia, serif;
+  font-size: 0.88rem;
+  color: rgba(254,249,239,0.82);
+  line-height: 1.75;
+  border-top: 1px solid rgba(200,146,42,0.15);
+  padding-top: 14px;
+}
+
+.witness-line {
+  text-align: center;
+  font-family: 'GurbaniAkhar', Georgia, serif;
+  font-size: 1rem;
+  color: rgba(200,146,42,0.6);
+  padding: 28px 24px 8px;
+  letter-spacing: 0.5px;
+}
+
+/* ── SUKHMANI SCREEN ── */
+#sukhmani { padding-bottom: 60px; }
+
+.sukhmani-top-bar {
+  width: 100%;
+  background: linear-gradient(to right, #0a1628, #1a3060, #0a1628);
+  border-bottom: 1.5px solid var(--gold);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 20px rgba(200,146,42,0.25);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sukhmani-title-wrap {
+  font-family: 'GurbaniAkhar', Georgia, serif;
+  font-size: 1.1rem;
+  color: var(--light-gold);
+}
+
+.s-nav-group {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.s-nav-btn {
+  font-family: Georgia, serif;
+  font-size: 0.78rem;
+  padding: 7px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.s-nav-next {
+  background: linear-gradient(135deg, #c8922a, #a87220);
+  border: none;
+  color: #fff8e8;
+}
+
+.s-nav-prev, .s-nav-rand {
+  background: transparent;
+  border: 1px solid rgba(200,146,42,0.5);
+  color: var(--light-gold);
+}
+
+.s-nav-prev:active, .s-nav-rand:active { background: rgba(200,146,42,0.15); }
+
+.s-counter {
+  font-family: Georgia, serif;
+  font-size: 0.72rem;
+  color: var(--gold);
+  min-width: 44px;
+  text-align: center;
+}
+
+.s-container {
+  max-width: 780px;
+  width: 100%;
+  padding: 20px 16px 60px;
+}
+
+.s-ik-onkar {
+  text-align: center;
+  font-family: 'GurbaniAkhar', serif;
+  font-size: 2rem;
+  color: var(--gold);
+  padding: 14px 0 10px;
+  text-shadow: 0 0 30px rgba(200,146,42,0.6);
+}
+
+.s-card {
+  background: linear-gradient(160deg, #152040 0%, #0d1a35 100%);
+  border: 1px solid rgba(200,146,42,0.35);
+  border-radius: 12px;
+  padding: 10px 0 24px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(240,201,107,0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.s-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.s-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.ashtpadi-badge {
+  background: var(--gold);
+  color: #0a1628;
+  font-family: Georgia, serif;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 4px 0;
+  text-align: center;
+  width: 100%;
+  letter-spacing: 1px;
+}
+
+.section-label {
+  text-align: center;
+  font-family: 'GurbaniAkhar', serif;
+  font-size: 1rem;
+  padding: 8px 20px;
+  display: block;
+  width: 100%;
+}
+
+.slok-label {
+  color: var(--light-gold);
+  border-bottom: 1px solid rgba(200,146,42,0.35);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+}
+
+.astpadi-label {
+  color: var(--gold);
+  border-top: 1px dashed rgba(200,146,42,0.3);
+  border-bottom: 1px dashed rgba(200,146,42,0.3);
+  margin: 18px 0 14px;
+  padding: 7px 0;
+}
+
+.slok-line {
+  font-family: 'GurbaniAkhar', serif;
+  font-size: 1.2rem;
+  line-height: 2.1;
+  text-align: center;
+  color: #e8d5a0;
+  padding: 1px 16px;
+}
+
+.verse-line {
+  font-family: 'GurbaniAkhar', serif;
+  font-size: 1.15rem;
+  line-height: 2.1;
+  text-align: center;
+  color: var(--soft-white);
+  padding: 1px 16px;
+}
+
+.rahao {
+  font-family: 'GurbaniAkhar', serif;
+  font-size: 1.1rem;
+  text-align: center;
+  color: var(--light-gold);
+  margin: 10px 16px;
+  padding: 8px;
+  background: rgba(200,146,42,0.1);
+  border-radius: 6px;
+}
+
+.s-btn-area {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+/* ── AUDIO ── */
+#audioPlayer { display: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 400px) {
+  .home-symbol { font-size: 4rem; }
+  .home-title { font-size: 1.3rem; }
+  .verse-line, .slok-line { font-size: 1rem; }
+  .sukhmani-title-wrap { font-size: 0.9rem; }
+}
+</style>
+</head>
+<body>
+
+<audio id="audioPlayer" src="aek-onkar.mp3" preload="auto"></audio>
+
+<!-- ══ HOME ══ -->
+<div id="home" class="screen active">
+  <div class="home-symbol">ੴ</div>
+  <div class="home-title">AEK ONKAR</div>
+  <div class="home-sub">ਅੇਕ ਓਂਕਾਰ</div>
+  <div class="home-divider"></div>
+
+  <button class="home-btn btn-story" onclick="showScreen('story')">
+    📖 &nbsp;Story of Aek Onkar
+  </button>
+  <button class="home-btn btn-sukhmani" onclick="showScreen('sukhmani')">
+    ੴ &nbsp;Sukhmani Sahib
+  </button>
+
+  <div class="home-tagline">
+    Aek Onkar Satgur Parsad<br>
+    <span style="font-size:0.7rem;opacity:0.6;">One Divine Reality · One Sacred Peace</span>
+  </div>
+</div>
+
+<!-- ══ STORY ══ -->
+<div id="story" class="screen">
+  <div class="top-bar">
+    <button class="back-btn" onclick="showScreen('home')">← Home</button>
+    <span style="color:var(--gold);font-size:1.1rem;">ੴ</span>
+    <span style="color:rgba(200,146,42,0.5);font-size:0.75rem;">Story</span>
+  </div>
+
+  <div class="story-header">ੴ</div>
+  <div class="story-intro">Story of Aek Onkar · The Oneness behind all deviation</div>
+
+  <div class="accordion" id="accordion"></div>
+
+  <div class="witness-line">ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ</div>
+</div>
+
+<!-- ══ SUKHMANI ══ -->
+<div id="sukhmani" class="screen">
+  <div class="sukhmani-top-bar">
+    <button class="back-btn" onclick="showScreen('home')">← Home</button>
+    <div class="sukhmani-title-wrap">suKmnI swihb</div>
+    <div class="s-nav-group">
+      <button class="s-nav-btn s-nav-prev" onclick="showPrev()">← Prev</button>
+      <button class="s-nav-btn s-nav-rand" onclick="showRandom()">✦</button>
+      <button class="s-nav-btn s-nav-next" onclick="showNext()">Next →</button>
+    </div>
+    <div class="s-counter"><span id="numCircle">—</span><br><span style="opacity:0.6">of 24</span></div>
+  </div>
+
+  <div class="s-container">
+    <div class="s-ik-onkar">ੴ</div>
+    <div class="s-card" id="mainCard">
+      <div class="ashtpadi-badge" id="badgeText">Ashtpadi —</div>
+      <div id="sContent" style="opacity:1">
+        <div style="text-align:center;font-family:Georgia,serif;color:var(--gold);padding:40px 0;">Loading…</div>
+      </div>
+    </div>
+    <div class="s-btn-area">
+      <button class="s-nav-btn s-nav-prev" onclick="showPrev()">← Prev</button>
+      <button class="s-nav-btn s-nav-rand" onclick="showRandom()">✦ Random</button>
+      <button class="s-nav-btn s-nav-next" onclick="showNext()">Next →</button>
+    </div>
+    <div style="text-align:center;font-family:Georgia,serif;font-size:0.72rem;color:rgba(200,146,42,0.4);padding:24px 0 10px;">
+      Sukhmani Sahib · Guru Arjan Dev Ji · Sri Guru Granth Sahib · Ang 262–296
+    </div>
+  </div>
+</div>
+
+<script>
+// ── SERVICE WORKER ──
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').catch(() => {});
+}
+
+// ── SCREEN MANAGER ──
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+  if (id === 'sukhmani' && currentSIndex < 0) {
+    showBlock(Math.floor(Math.random() * 24));
+  }
+}
+
+// ── AUDIO ──
+const audio = document.getElementById('audioPlayer');
+function playAudio() {
+  audio.currentTime = 0;
+  audio.play().catch(() => {});
+}
+
+// ── STORY DATA ──
+const storyItems = [
+  {
+    q: "Why having an enemy is a deviation",
+    a: "For having enmity two are required. It is self injury and deviation from the divine Oneness."
+  },
+  {
+    q: "Why speaking a lie is a deviation",
+    a: "For telling lies two are required, which takes us towards duality. Telling a lie is lying to our own self."
+  },
+  {
+    q: "Why the in-taking and out-giving of fear is a deviation",
+    a: "For that, two are required, whereas duality is deviation from divine Oneness."
+  },
+  {
+    q: "Why attachment to the world is a deviation",
+    a: "World is a simulation — a perception far away from the divine reality of Oneness. It changes like the shadow of a tree. Attachment to shadows is futile and hence a deviation."
+  },
+  {
+    q: "Why ego is a chronic disease",
+    a: "Our ego is a self-built assumption entirely founded on duality, and hence is a deviation from Oneness."
+  },
+  {
+    q: "Why anger is self-harming",
+    a: "When all is divine One, anger only backfires. It is like an auto-immune disease — the body harming itself."
+  },
+  {
+    q: "Why greed is a deviation",
+    a: "Accumulation is done under the spell of duality. In the state of Oneness, who would accumulate from whom? Hence it is a deviation."
+  },
+  {
+    q: "Why slandering is counter-productive",
+    a: "For slandering there is a minimum requirement of two, which is duality. The light of the Divine One sustains all. Hence slandering is self-harming."
+  },
+  {
+    q: "Why lust is injurious",
+    a: "Lust is pursued under the assumption it would go unnoticed. This is a deviation from Oneness. When we know our sin, it is known to the cosmos."
+  },
+  {
+    q: "Why we should have no grudge against the happenings of the past",
+    a: "There is not any other doer. When the doer is the divine One, such grudges rob us of the blessings."
+  },
+  {
+    q: "Why undertaking difficult pilgrimages can remain futile",
+    a: "The place of pilgrimage can only be different if there is a perception of duality. Hence it is a deviation from Oneness."
+  },
+  {
+    q: "Why any special day or time cannot be more auspicious than another",
+    a: "Time is a dimension born of our limited perceiving power. The Divine One is above this perception of time, date, and the day of the week."
+  },
+  {
+    q: "Why hurting animals is self-defeating",
+    a: "Human form, animal form, plant form — every form is sustained by the Divine One. Hurting them is hurting ourselves."
+  },
+  {
+    q: "Why Guru's blessings are important",
+    a: "Guru is a manifestation of the Divine One — as is everybody else. But Guru's blessings remove the illusion and merge us with the Divine One."
+  }
+];
+
+// ── BUILD ACCORDION ──
+const accordion = document.getElementById('accordion');
+storyItems.forEach((item, i) => {
+  const div = document.createElement('div');
+  div.className = 'acc-item';
+  div.innerHTML = `
+    <button class="acc-header" onclick="toggleAcc(${i})">
+      <div class="acc-num">${i + 1}</div>
+      <div class="acc-question">${item.q}</div>
+      <div class="acc-arrow">▼</div>
+    </button>
+    <div class="acc-body">
+      <div class="acc-content">${item.a}</div>
+    </div>
+  `;
+  accordion.appendChild(div);
+});
+
+function toggleAcc(i) {
+  const items = document.querySelectorAll('.acc-item');
+  const isOpen = items[i].classList.contains('open');
+  items.forEach(el => el.classList.remove('open'));
+  if (!isOpen) {
+    items[i].classList.add('open');
+    playAudio();
+  }
+}
+
+// ── SUKHMANI BLOCKS ──
+const blocks = ["<div class=\"section-label slok-label\">sloku - 1</div>\n<div class=\"slok-line\">ੴ siqgur pRswid ]</div>\n<div class=\"slok-line\">Awid gurey nmh ]</div>\n<div class=\"slok-line\">jugwid gurey nmh ]</div>\n<div class=\"slok-line\">siqgurey nmh ]</div>\n<div class=\"slok-line\">sRI gurdyvey nmh ]1]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">ismrau ismir ismir suKu pwvau ]</div>\n<div class=\"verse-line\">kil klys qn mwih imtwvau ]</div>\n<div class=\"verse-line\">ismrau jwsu ibsuMBr eykY ]</div>\n<div class=\"verse-line\">nwmu jpq Agnq AnykY ]</div>\n<div class=\"verse-line\">byd purwn isMimRiq suDwK´r ]</div>\n<br>\n<div class=\"verse-line\">kIny rwm nwm iek AwK´r ]</div>\n<div class=\"verse-line\">iknkw eyk ijsu jIA bswvY ]</div>\n<div class=\"verse-line\">qw kI mihmw gnI n AwvY ]</div>\n<div class=\"verse-line\">kWKI eykY drs quhwro ]</div>\n<div class=\"verse-line\">nwnk aun sMig moih auDwro ]1]</div>\n<div class=\"verse-line\">suKmnI suK AMimRq pRB nwmu ]</div>\n<div class=\"rahao\">Bgq jnw kY min ibsRwm ] rhwau ]</div>\n<div class=\"verse-line\">pRB kY ismrin griB n bsY ]</div>\n<div class=\"verse-line\">pRB kY ismrin dUKu jmu nsY ]</div>\n<div class=\"verse-line\">pRB kY ismrin kwlu prhrY ]</div>\n<div class=\"verse-line\">pRB kY ismrin dusmnu trY ]</div>\n<div class=\"verse-line\">pRB ismrq kCu ibGnu n lwgY ]</div>\n<div class=\"verse-line\">pRB kY ismrin Anidnu jwgY ]</div>\n<div class=\"verse-line\">pRB kY ismrin Bau n ibAwpY ]</div>\n<div class=\"verse-line\">pRB kY ismrin duKu n sMqwpY ]</div>\n<br>\n<div class=\"verse-line\">pRB kw ismrnu swD kY sMig ]</div>\n<div class=\"verse-line\">srb inDwn nwnk hir rMig ]2]</div>","<div class=\"section-label slok-label\">sloku - 2</div>\n<div class=\"slok-line\">dIn drd duK BMjnw</div>\n<div class=\"slok-line\">Git Git nwQ AnwQ ]</div>\n<div class=\"slok-line\">srix qum@wrI AwieE</div>\n<div class=\"slok-line\">nwnk ky pRB swQ ]1]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">jh mwq ipqw suq mIq n BweI ]</div>\n<div class=\"verse-line\">mn aUhw nwmu qyrY sMig shweI ]</div>\n<br>\n<div class=\"verse-line\">jh mhw BieAwn dUq jm dlY ]</div>\n<div class=\"verse-line\">qh kyvl nwmu sMig qyrY clY ]</div>\n<div class=\"verse-line\">jh muskl hovY Aiq BwrI ]</div>\n<div class=\"verse-line\">hir ko nwmu iKn mwih auDwrI ]</div>\n<div class=\"verse-line\">Aink punhcrn krq nhI qrY ]</div>\n<div class=\"verse-line\">hir ko nwmu koit pwp prhrY ]</div>\n<div class=\"verse-line\">gurmuiK nwmu jphu mn myry ]</div>\n<div class=\"verse-line\">nwnk pwvhu sUK Gnyry ]1]</div>","<div class=\"section-label slok-label\">sloku - 3</div>\n<div class=\"slok-line\">bhu swsqR bhu isimRqI</div>\n<div class=\"slok-line\">pyKy srb FFoil ]</div>\n<div class=\"slok-line\">pUjis nwhI hir hry</div>\n<div class=\"slok-line\">nwnk nwm Amol ]1]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">jwp qwp igAwn siB iDAwn ]</div>\n<div class=\"verse-line\">Kt swsqR isimRiq viKAwn ]</div>\n<div class=\"verse-line\">jog AiBAws krm DRm ikirAw ]</div>\n<br>\n<div class=\"verse-line\">sgl iqAwig bn mDy iPirAw ]</div>\n<div class=\"verse-line\">Aink pRkwr kIey bhu jqnw ]</div>\n<div class=\"verse-line\">puMn dwn homy bhu rqnw ]</div>\n<div class=\"verse-line\">nhI quil rwm nwm bIcwr ]</div>\n<div class=\"verse-line\">nwnk gurmuiK nwmu jpIAY iek bwr ]1]</div>","<div class=\"section-label slok-label\">sloku - 4</div>\n<div class=\"slok-line\">inrgunIAwr ieAwinAw</div>\n<div class=\"slok-line\">so pRBu sdw smwil ]</div>\n<div class=\"slok-line\">ijin kIAw iqsu cIiq rKu</div>\n<div class=\"slok-line\">nwnk inbhI nwil ]1]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">rmeIAw ky gun cyiq prwnI ]</div>\n<div class=\"verse-line\">kvn mUl qy kvn idRstwnI ]</div>\n<div class=\"verse-line\">ijin qUM swij svwir sIgwirAw ]</div>\n<br>\n<div class=\"verse-line\">grB Agin mih ijnih aubwirAw ]</div>\n<div class=\"verse-line\">bwr ibvsQw quJih ipAwrY dUD ]</div>\n<div class=\"verse-line\">Bir jobn Bojn suK sUD ]</div>\n<div class=\"verse-line\">ibriD BieAw aUpir swk sYn ]</div>\n<div class=\"verse-line\">nwnk rwKnhwru Apwru ]3]</div>","<div class=\"section-label slok-label\">sloku - 5</div>\n<div class=\"slok-line\">dynhwru pRB Coif kY</div>\n<div class=\"slok-line\">lwgih Awn suAwie ]</div>\n<div class=\"slok-line\">nwnk khU n sIJeI</div>\n<div class=\"slok-line\">ibnu nwvY piq jwie ]1]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">ds bsqU ly pwCY pwvY ]</div>\n<div class=\"verse-line\">eyk bsqu kwrin ibKoit gvwvY ]</div>\n<br>\n<div class=\"verse-line\">ijsu Twkur isau nwhI cwrw ]</div>\n<div class=\"verse-line\">qw kau kIjY sd nmskwrw ]</div>\n<div class=\"verse-line\">jw kY min lwgw pRBu mITw ]</div>\n<div class=\"verse-line\">srb sUK qwhU min vUTw ]</div>\n<div class=\"verse-line\">srb Qok nwnk iqin pwieAw ]1]</div>","<div class=\"section-label slok-label\">sloku - 6</div>\n<div class=\"slok-line\">kwm k®oD Aru loB moh</div>\n<div class=\"slok-line\">ibnis jwie AhMmyv ]</div>\n<div class=\"slok-line\">nwnk pRB srxwgqI</div>\n<div class=\"slok-line\">kir pRswdu gurdyv ]1]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">ijh pRswid CqIh AMimRq Kwih ]</div>\n<div class=\"verse-line\">iqsu Twkur kau rKu mn mwih ]</div>\n<div class=\"verse-line\">ijh pRswid sugMDq qin lwvih ]</div>\n<div class=\"verse-line\">iqs kau ismrq prm giq pwvih ]</div>\n<div class=\"verse-line\">sdw sdw pRB bsih hjUry ]</div>\n<div class=\"verse-line\">khu nwnk syeI jn pUry ]</div>","<div class=\"section-label slok-label\">sloku - 7</div>\n<div class=\"slok-line\">Agm AgwiD pwrbRhmu soie ]</div>\n<div class=\"slok-line\">jo jo khY su mukqw hoie ]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">swD kY sMig muK aUjl hoq ]</div>\n<div class=\"verse-line\">swDsMig mlu sglI Koq ]</div>\n<div class=\"verse-line\">swD kY sMig imtY AiBmwnu ]</div>\n<div class=\"verse-line\">swD kY sMig pRgtY suigAwnu ]</div>\n<div class=\"verse-line\">swD kY sMig buJY pRBu nyrw ]</div>\n<div class=\"verse-line\">nwnk swD kI soBw pRB mwih smwnI ]1]</div>","<div class=\"section-label slok-label\">sloku - 8</div>\n<div class=\"slok-line\">min swcw muiK swcw soie ]</div>\n<div class=\"slok-line\">Avru n pyKY eyksu ibnu koie ]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">bRhm igAwnI sdw inrlyp ]</div>\n<div class=\"verse-line\">jYsy jl mih kml Alyp ]</div>\n<div class=\"verse-line\">bRhm igAwnI sdw inrdoK ]</div>\n<div class=\"verse-line\">jYsy sUru srb kau soK ]</div>\n<div class=\"verse-line\">bRhm igAwnI kY idRsit smwin ]</div>\n<div class=\"verse-line\">bRhm igAwnI kw iehY gunwau ]</div>\n<div class=\"verse-line\">nwnk ijau pwvk kw shj suBwau ]1]</div>","<div class=\"section-label slok-label\">sloku - 9</div>\n<div class=\"slok-line\">auir DwrY jo AMqir nwmu ]</div>\n<div class=\"slok-line\">srb mY pyKY Bgvwnu ]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">imiQAw nwhI rsnw prs ]</div>\n<div class=\"verse-line\">mn mih pRIiq inrMjn drs ]</div>\n<div class=\"verse-line\">pr iqRA rUpu n pyKY nyqR ]</div>\n<div class=\"verse-line\">swD kI thl sMqsMig hyq ]</div>\n<div class=\"verse-line\">ieMdRI ijq pMc doK qy rhq ]</div>\n<div class=\"verse-line\">nwnk koit mDy ko AYsw Aprs ]1]</div>","<div class=\"section-label slok-label\">sloku - 10</div>\n<div class=\"slok-line\">ausqiq krih Anyk jn</div>\n<div class=\"slok-line\">AMqu n pwrwvwr ]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">keI koit hoey pUjwrI ]</div>\n<div class=\"verse-line\">keI koit Awcwr ibauhwrI ]</div>\n<div class=\"verse-line\">keI koit byd ky sRoqy ]</div>\n<div class=\"verse-line\">keI koit qpIsur hoqy ]</div>\n<div class=\"verse-line\">nwnk krqy kw AMqu n pwvih ]1]</div>","<div class=\"section-label slok-label\">sloku - 11</div>\n<div class=\"slok-line\">krx kwrx pRBu eyku hY</div>\n<div class=\"slok-line\">dUsr nwhI koie ]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">krn krwvn krnY jogu ]</div>\n<div class=\"verse-line\">jo iqsu BwvY soeI hogu ]</div>\n<div class=\"verse-line\">hukmy Dwir ADr rhwvY ]</div>\n<div class=\"verse-line\">hukmy aupjY hukim smwvY ]</div>\n<div class=\"verse-line\">nwnk sB mih rihAw smweI ]1]</div>","<div class=\"section-label slok-label\">sloku - 12</div>\n<div class=\"slok-line\">suKI bsY mskInIAw</div>\n<div class=\"slok-line\">Awpu invwir qly ]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">ijs kY AMqir rwj AiBmwnu ]</div>\n<div class=\"verse-line\">so nrkpwqI hovq suAwnu ]</div>\n<div class=\"verse-line\">Dn BUim kw jo krY gumwnu ]</div>\n<div class=\"verse-line\">so mUrKu AMDw AigAwnu ]</div>\n<div class=\"verse-line\">nwnk eIhw mukqu AwgY suKu pwvY ]1]</div>","<div class=\"section-label slok-label\">sloku - 13</div>\n<div class=\"slok-line\">sMq srin jo jnu prY</div>\n<div class=\"slok-line\">so jnu auDrnhwr ]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">sMq kY dUKin Awrjw GtY ]</div>\n<div class=\"verse-line\">sMq kY dUKin jm qy nhI CutY ]</div>\n<div class=\"verse-line\">sMq kY dUKin suKu sBu jwie ]</div>\n<div class=\"verse-line\">sMq ik®pwl ik®pw jy krY ]</div>\n<div class=\"verse-line\">nwnk sMqsMig inMdku BI qrY ]1]</div>","<div class=\"section-label slok-label\">sloku - 14</div>\n<div class=\"slok-line\">qjhu isAwnp suir jnhu</div>\n<div class=\"slok-line\">ismrhu hir hir rwie ]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">mwnuK kI tyk ibRQI sB jwnu ]</div>\n<div class=\"verse-line\">dyvn kau eykY Bgvwnu ]</div>\n<div class=\"verse-line\">mwrY rwKY eyko Awip ]</div>\n<div class=\"verse-line\">mwnuK kY ikCu nwhI hwiQ ]</div>\n<div class=\"verse-line\">ismir ismir ismir pRBu soie ]</div>\n<div class=\"verse-line\">nwnk ibGnu n lwgY koie ]1]</div>","<div class=\"section-label slok-label\">sloku - 15</div>\n<div class=\"slok-line\">srb klw BrpUr</div>\n<div class=\"slok-line\">pRB ibrQw jwnnhwr ]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">tUtI gwFnhwr guopwl ]</div>\n<div class=\"verse-line\">srb jIAw Awpy pRiqpwl ]</div>\n<div class=\"verse-line\">ry mn myry sdw hir jwip ]</div>\n<div class=\"verse-line\">AibnwsI pRBu Awpy Awip ]</div>\n<div class=\"verse-line\">giq nwnk jip eyk hir nwm ]1]</div>","<div class=\"section-label slok-label\">sloku - 16</div>\n<div class=\"slok-line\">rUpu n ryK n rMgu ikCu</div>\n<div class=\"slok-line\">iqRhu gux qy pRB iBMn ]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">AibnwsI pRBu mn mih rwKu ]</div>\n<div class=\"verse-line\">mwnuK kI qU pRIiq iqAwgu ]</div>\n<div class=\"verse-line\">iqs qy prY nwhI ikCu koie ]</div>\n<div class=\"verse-line\">srb inrMqir eyko soie ]</div>\n<div class=\"verse-line\">nwnk kY min iehu Anrwau ]1]</div>","<div class=\"section-label slok-label\">sloku - 17</div>\n<div class=\"slok-line\">Awid scu jugwid scu ]</div>\n<div class=\"slok-line\">hY iB scu nwnk hosI iB scu ]1]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">crn siq siq prsnhwr ]</div>\n<div class=\"verse-line\">pUjw siq siq syvdwr ]</div>\n<div class=\"verse-line\">drsnu siq siq pyKnhwr ]</div>\n<div class=\"verse-line\">nwmu siq siq iDAwvnhwr ]</div>\n<div class=\"verse-line\">nwnk siq siq pRBu soie ]1]</div>","<div class=\"section-label slok-label\">sloku - 18</div>\n<div class=\"slok-line\">siq purKu ijin jwinAw</div>\n<div class=\"slok-line\">siqguru iqs kw nwau ]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">siqguru isK kI krY pRiqpwl ]</div>\n<div class=\"verse-line\">syvk kau guru sdw dieAwl ]</div>\n<div class=\"verse-line\">isK kI guru durmiq mlu ihrY ]</div>\n<div class=\"verse-line\">gur bcnI hir nwmu aucrY ]</div>\n<div class=\"verse-line\">nwnk siqguru isK kau jIA nwil smwrY ]1]</div>","<div class=\"section-label slok-label\">sloku - 19</div>\n<div class=\"slok-line\">swiQ n cwlY ibnu Bjn</div>\n<div class=\"slok-line\">ibiKAw sglI Cwru ]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">sMq jnw imil krhu bIcwru ]</div>\n<div class=\"verse-line\">eyku ismir nwm AwDwru ]</div>\n<div class=\"verse-line\">crn kml ird mih auir Dwrhu ]</div>\n<div class=\"verse-line\">eyk Aws rwKhu mn mwih ]</div>\n<div class=\"verse-line\">srb rog nwnk imit jwih ]1]</div>","<div class=\"section-label slok-label\">sloku - 20</div>\n<div class=\"slok-line\">iPrq iPrq pRB AwieAw</div>\n<div class=\"slok-line\">pirAw qau srnwie ]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">jwck jnu jwcY pRB dwnu ]</div>\n<div class=\"verse-line\">kir ikrpw dyvhu hir nwmu ]</div>\n<div class=\"verse-line\">swD jnw kI mwgau DUir ]</div>\n<div class=\"verse-line\">sdw sdw pRB ky gun gwvau ]</div>\n<div class=\"verse-line\">nwnku mwgY nwmu pRB swru ]1]</div>","<div class=\"section-label slok-label\">sloku - 21</div>\n<div class=\"slok-line\">srgun inrgun inrMkwr</div>\n<div class=\"slok-line\">suMn smwDI Awip ]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">jb Akwru iehu kCu n idRstyqw ]</div>\n<div class=\"verse-line\">pwp puMn qb kh qy hoqw ]</div>\n<div class=\"verse-line\">jb DwrI Awpn suMn smwiD ]</div>\n<div class=\"verse-line\">Awpn Kylu Awip vrqIjw ]</div>\n<div class=\"verse-line\">nwnk krnYhwru n dUjw ]1]</div>","<div class=\"section-label slok-label\">sloku - 22</div>\n<div class=\"slok-line\">jIA jMq ky Twkurw</div>\n<div class=\"slok-line\">Awpy vrqxhwr ]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">Awip kQY Awip sunnYhwru ]</div>\n<div class=\"verse-line\">Awpih eyku Awip ibsQwru ]</div>\n<div class=\"verse-line\">qum qy iBMn nhI ikCu hoie ]</div>\n<div class=\"verse-line\">Awpn sUiq sBu jgqu proie ]</div>\n<div class=\"verse-line\">nwnk sgl isRsit kw jyqw ]1]</div>","<div class=\"section-label slok-label\">sloku - 23</div>\n<div class=\"slok-line\">igAwn AMjnu guir dIAw</div>\n<div class=\"slok-line\">AigAwn AMDyr ibnwsu ]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">sMqsMig AMqir pRBu fITw ]</div>\n<div class=\"verse-line\">nwmu pRBU kw lwgw mITw ]</div>\n<div class=\"verse-line\">nau iniD AMimRqu pRB kw nwmu ]</div>\n<div class=\"verse-line\">dyhI mih ies kw ibsRwmu ]</div>\n<div class=\"verse-line\">nwnk iqsu jn soJI pwey ]1]</div>","<div class=\"section-label slok-label\">sloku - 24</div>\n<div class=\"slok-line\">pUrw pRBu AwrwiDAw</div>\n<div class=\"slok-line\">pUrw jw kw nwau ]</div>\n<div class=\"section-label astpadi-label\">AstpdI</div>\n<div class=\"verse-line\">pUry gur kw suin aupdysu ]</div>\n<div class=\"verse-line\">pwrbRhmu inkit kir pyKu ]</div>\n<div class=\"verse-line\">swis swis ismrhu goibMd ]</div>\n<div class=\"verse-line\">suKmnI shj goibMd gun nwm ]</div>\n<div class=\"verse-line\">ijsu min bsY su hoq inDwn ]</div>\n<div class=\"verse-line\">nwnk ieh guix nwmu suKmnI ]8]24]</div>"];
+
+let currentSIndex = -1;
+
+function showBlock(idx) {
+  currentSIndex = idx;
+  document.getElementById('numCircle').textContent = idx + 1;
+  document.getElementById('badgeText').textContent = 'Ashtpadi ' + (idx + 1) + ' of 24';
+  const content = document.getElementById('sContent');
+  content.style.opacity = '0';
+  content.style.transition = 'opacity 0.3s';
+  setTimeout(() => {
+    content.innerHTML = blocks[idx];
+    content.style.opacity = '1';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 160);
+}
+
+function showRandom() {
+  let idx;
+  do { idx = Math.floor(Math.random() * 24); } while (idx === currentSIndex && blocks.length > 1);
+  showBlock(idx);
+}
+
+function showNext() { showBlock((currentSIndex + 1) % 24); }
+function showPrev() { showBlock((currentSIndex + 23) % 24); }
+</script>
+</body>
+</html>
